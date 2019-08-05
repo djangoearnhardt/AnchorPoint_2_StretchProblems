@@ -20,8 +20,36 @@
  */
 import Foundation
 
+let currentYear: Int = 2019
+let dCCurrentYear: Int = {
+    //singleton
+    let calendar = Calendar.current
+    let year = calendar.component(.year, from: Date())
+    return year
+}()
 
+struct Person {
+    var firstName: String
+    var lastName: String
+    var yearOfBirth: Int
+    var age: Int {
+        get {
+            return currentYear - yearOfBirth
+            
+        } set (newAge) {
+            yearOfBirth = currentYear - newAge
+        
+        }
+    }
+}
 
+var composer = Person(firstName: "Peter", lastName: "Tchaikovsky", yearOfBirth: 1840)
+print(composer.yearOfBirth)
+print(composer.firstName)
+print(composer.lastName)
+print(composer.age)
+composer.age = 30
+composer.yearOfBirth
 
 
 //: [Protocols](@next)
